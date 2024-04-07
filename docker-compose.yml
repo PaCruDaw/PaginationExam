@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  laravel:
+    image: docker.io/bitnami/laravel:10
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./laravel:/app"
+    depends_on:
+      - mysql
+
+  react:
+    build:
+      context: ./react
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./react:/app"
+
+  mysql:
+    image: 'mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=testexam
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=userpwd
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+  
+  fastapi:
+    build:
+      context: ./apiexam
+      dockerfile: Dockerfile
+    container_name: fastapi
+    ports:
+      - "8003:8003"
+    volumes:
+      - ./apiexam/app:/code/app
+
+volumes:
+  mysql_data:
+    driver: local

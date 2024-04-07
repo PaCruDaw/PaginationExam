@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        {% for index in range(elements|length) %}
+        {% set element = elements[index] %}
+        <li> Personatge id: {{element.id}}
+            <ul>
+                <li>
+                    Nom: {{ element.firstName }}
+                </li>    
+                    
+                <li>
+                    family: {{element.family}}
+                </li>
+                <li>
+                    lastName: {{element.lastName}}
+                </li>
+                <li>
+                    fullName: {{element.fullName}}
+                </li>
+                <li>
+                     title: {{element.title}}
+                </li>
+            </ul>
+                
+        </li>
+        {% endfor %}
+    </ul>
+   
+   <p>{{elements}}</p>
+</body>
+</html>
