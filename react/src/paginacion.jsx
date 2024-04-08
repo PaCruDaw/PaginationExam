@@ -1,57 +1,53 @@
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactPaginate from 'react-paginate';
 
 const PaginationExample = () => {
-  const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const perPage = 10; // Definir el número de elementos por página
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
+  const limit = 25; // Número de resultados por página
 
   useEffect(() => {
     fetchData();
-  }, [currentPage]);
+  }, [offset]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/users?page=${currentPage}`);
-      setData(response.data.data);
-      setTotalPages(response.data.total_pages);
+      setLoading(true);
+      const response = await axios.get(`http://localhost:8000/api/users?limit=${limit}&offset=${offset}`);
+      setUsers(response.data);
+      setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setLoading(false);
     }
   };
 
-  const handlePageClick = ({ selected }) => {
-    setCurrentPage(selected + 1);
+  const handlePrevPage = () => {
+    setOffset(offset - limit);
+  };
+
+  const handleNextPage = () => {
+    setOffset(offset + limit);
   };
 
   return (
     <div>
-    <section>
-      <ul>
-        {data.map(item => (
-            <p key={item.id} >
-                {item.name}
-            </p>
-        ))}
-      </ul>
-    </section>
-      <ReactPaginate
-        previousLabel={'previous'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        pageCount={Math.ceil(data.length / perPage)}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        containerClassName={'pagination flex space-x-2 items-center'}
-        activeClassName={'active'}
-        pageClassName={'text-black px-4 py-2 rounded-lg text-lg cursor-pointer'}
-        breakClassName={'text-black px-4 py-2 rounded-lg text-lg'}
-        onPageChange={handlePageClick}
-      />
+      {loading ? (
+        <p>Cargando...</p>
+      ) : (
+        <div>
+          <ul>
+            {users.map(user => (
+              <li key={user.id}>{user.name}</li>
+            ))}
+          </ul>
+          <button onClick={handlePrevPage} disabled={offset === 0}>Anterior</button>
+          <button onClick={handleNextPage}>Siguiente</button>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default PaginationExample;
