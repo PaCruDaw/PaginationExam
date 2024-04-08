@@ -5,7 +5,7 @@ const PaginationExample = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
-  const limit = 25; // Número de resultados por página
+  const limit = 20; // Número de resultados por página
 
   useEffect(() => {
     fetchData();
@@ -36,15 +36,28 @@ const PaginationExample = () => {
       {loading ? (
         <p>Cargando...</p>
       ) : (
-        <div>
-          <ul>
+      <div>
+        <table className="user-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
             {users.map(user => (
-              <li key={user.id}>{user.name}</li>
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{user.surname}</td>
+                <td>{user.email}</td>
+              </tr>
             ))}
-          </ul>
-          <button onClick={handlePrevPage} disabled={offset === 0}>Anterior</button>
-          <button onClick={handleNextPage}>Siguiente</button>
-        </div>
+          </tbody>
+        </table>
+        <button onClick={handlePrevPage} disabled={offset === 0}>Anterior</button>
+        <button onClick={handleNextPage}>Siguiente</button>
+      </div>
       )}
     </div>
   );

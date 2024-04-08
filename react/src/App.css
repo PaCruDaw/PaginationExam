@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+.user-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user-table th, .user-table td {
+  border: 1px solid #0d0303;
+  text-align: left;
+  padding: 8px;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+}
