@@ -22,10 +22,13 @@ const PaginationExample = () => {
       setLoading(false);
     }
   };
-
+console.log(offset)
   const handlePrevPage = () => {
-    setOffset(offset - limit);
+    if (offset >= limit) { // Asegura que el offset no sea menor que 0
+      setOffset(offset - limit);
+    }
   };
+
 
   const handleNextPage = () => {
     setOffset(offset + limit);
