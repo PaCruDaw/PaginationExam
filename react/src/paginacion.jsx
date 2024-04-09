@@ -5,7 +5,7 @@ const PaginationExample = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
-  const limit = 20; // Número de resultados por página
+  const limit = 15; // Número de resultados por página
 
   useEffect(() => {
     fetchData();

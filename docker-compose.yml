@@ -40,16 +40,6 @@ services:
       - "8080:80"
     depends_on:
       - mysql
-  
-  fastapi:
-    build:
-      context: ./apiexam
-      dockerfile: Dockerfile
-    container_name: fastapi
-    ports:
-      - "8003:8003"
-    volumes:
-      - ./apiexam/app:/code/app
 
 volumes:
   mysql_data:

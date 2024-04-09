@@ -16,4 +16,17 @@ class UserController extends Controller
 
         return response()->json($users);
     }
+
+    public function getUsersCount()
+    {
+        try {
+            // Usa el método count() en el modelo User para contar los registros
+            $count = User::count();
+            // Devuelve el total de registros como respuesta JSON
+            return response()->json(['count' => $count]);
+        } catch (\Exception $e) {
+            // Maneja cualquier excepción y devuelve un mensaje de error
+            return response()->json(['error' => 'Internal server error'], 500);
+        }
+    }
 }
