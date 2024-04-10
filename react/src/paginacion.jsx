@@ -45,6 +45,14 @@ const PaginationExample = () => {
     setCurrentPage(prevPage => Math.min(prevPage + 1, pageCount - 1));
   };
 
+  const handleFirstPage = () => {
+    setCurrentPage(0);
+  };
+
+  const handleLastPage = () => {
+    setCurrentPage(pageCount - 1);
+  };
+
   const handlePageClick = (page) => {
     setCurrentPage(page);
   };
@@ -89,12 +97,18 @@ const PaginationExample = () => {
             </tbody>
           </table>
           <div className="pagination">
+            <button onClick={handleFirstPage} disabled={currentPage === 0}>
+              Primera
+            </button>
             <button onClick={handlePreviousPage} disabled={currentPage === 0}>
               Anterior
             </button>
             {renderPageNumbers()}
             <button onClick={handleNextPage} disabled={currentPage === pageCount - 1}>
               Siguiente
+            </button>
+            <button onClick={handleLastPage} disabled={currentPage === pageCount - 1}>
+              Última
             </button>
           </div>
         </div>
