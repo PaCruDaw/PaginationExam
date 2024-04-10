@@ -55,3 +55,58 @@
 .user-table th {
   background-color: #f2f2f2;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination li a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination li.active a {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination-link {
+  color: #007bff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+}
+
+.pagination-active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination-disabled {
+  color: #ccc;
+  pointer-events: none; /* Deshabilita los eventos de clic */
+}
