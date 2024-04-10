@@ -6,7 +6,7 @@ const PaginationExample = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-  const limit = 15; // Número de resultados por página
+  const limit = 20; // Número de resultados por página
   const maxPagesToShow = 5; // Número máximo de páginas mostradas en los controles de paginación
 
   useEffect(() => {

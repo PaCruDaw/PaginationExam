@@ -1,3 +1,9 @@
 npx create-react-app mi-aplicacion-react
 ir a la parpeta
 npm start
+
+
+
+SELECT * FROM users LIMIT :limit OFFSET :offset;
+SELECT * FROM users LIMIT 25 OFFSET 0;
+SELECT COUNT(*) FROM users;
